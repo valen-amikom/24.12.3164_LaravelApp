@@ -7,10 +7,12 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PartnerController;
 
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminTransactionsController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\EventController as AdminEventResourceController;
 
 /*
@@ -95,6 +97,17 @@ Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/login', [AuthController::class, 'showLogin'])
+        ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.post');
+
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+
     // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
@@ -105,5 +118,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // TRANSACTIONS
     Route::get('/transactions', [AdminTransactionsController::class, 'index'])
         ->name('transactions.index');
+
+        });
 
 });
