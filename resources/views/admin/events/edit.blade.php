@@ -12,6 +12,15 @@
         class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
 
         @csrf
+        @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>• {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         @method('PUT')
 
         {{-- Judul --}}
@@ -27,13 +36,13 @@
         <div class="mb-4">
             <label class="block mb-2 font-medium text-gray-700">Kategori Event</label>
             <select name="category_id"
-                    class="w-full border border-gray-300 p-2.5 rounded"
-                    required>
+                class="w-full border border-gray-300 p-2.5 rounded"
+                required>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}"
-                        {{ old('category_id', $event->category_id) == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
+                <option value="{{ $category->id }}"
+                    {{ old('category_id', $event->category_id) == $category->id ? 'selected' : '' }}>
+                    {{ $category->name }}
+                </option>
                 @endforeach
             </select>
         </div>
@@ -42,9 +51,9 @@
         <div class="mb-4">
             <label class="block mb-2 font-medium text-gray-700">Deskripsi Pendek</label>
             <textarea name="description"
-                    class="w-full border border-gray-300 p-2.5 rounded"
-                    rows="3"
-                    required>{{ old('description', $event->description) }}</textarea>
+                class="w-full border border-gray-300 p-2.5 rounded"
+                rows="3"
+                required>{{ old('description', $event->description) }}</textarea>
         </div>
 
         {{-- Grid --}}
@@ -63,6 +72,11 @@
                     value="{{ old('price', $event->price) }}"
                     class="w-full border border-gray-300 p-2.5 rounded"
                     required>
+                @error('price')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
 
             <div>
@@ -85,20 +99,20 @@
 
         {{-- Poster --}}
         <div class="mb-6">
-    <label class="block mb-2 font-medium text-gray-700">
-        Poster Event (Opsional)
-    </label>
+            <label class="block mb-2 font-medium text-gray-700">
+                Poster Event (Opsional)
+            </label>
 
-    <input type="file"
-        name="poster"
-        accept="image/*"
-        class="w-full border border-gray-300 p-2.5 rounded">
-</div>
+            <input type="file"
+                name="poster"
+                accept="image/*"
+                class="w-full border border-gray-300 p-2.5 rounded">
+        </div>
 
         {{-- Submit --}}
         <div class="flex justify-end border-t pt-4">
             <button type="submit"
-                    class="bg-blue-600 text-white px-8 py-2.5 rounded font-semibold hover:bg-blue-700 shadow-md">
+                class="bg-blue-600 text-white px-8 py-2.5 rounded font-semibold hover:bg-blue-700 shadow-md">
                 Simpan Perubahan
             </button>
         </div>

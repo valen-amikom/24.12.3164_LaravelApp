@@ -12,6 +12,15 @@
         class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
 
         @csrf
+        @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>• {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         {{-- Judul --}}
         <div class="mb-4">
@@ -62,6 +71,11 @@
                     value="{{ old('price') }}"
                     class="w-full border border-gray-300 p-2.5 rounded"
                     required>
+                @error('price')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
 
             <div>
