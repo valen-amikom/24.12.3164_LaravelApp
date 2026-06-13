@@ -26,13 +26,13 @@
         <div class="mb-4">
             <label class="block mb-2 font-medium text-gray-700">Kategori Event</label>
             <select name="category_id"
-                    class="w-full border border-gray-300 p-2.5 rounded focus:ring focus:ring-indigo-200"
-                    required>
+                class="w-full border border-gray-300 p-2.5 rounded focus:ring focus:ring-indigo-200"
+                required>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}"
-                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
+                <option value="{{ $category->id }}"
+                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->name }}
+                </option>
                 @endforeach
             </select>
         </div>
@@ -41,9 +41,9 @@
         <div class="mb-4">
             <label class="block mb-2 font-medium text-gray-700">Deskripsi Pendek</label>
             <textarea name="description"
-                    class="w-full border border-gray-300 p-2.5 rounded focus:ring focus:ring-indigo-200"
-                    rows="3"
-                    required>{{ old('description') }}</textarea>
+                class="w-full border border-gray-300 p-2.5 rounded focus:ring focus:ring-indigo-200"
+                rows="3"
+                required>{{ old('description') }}</textarea>
         </div>
 
         {{-- Grid --}}
@@ -84,15 +84,20 @@
 
         {{-- Poster --}}
         <div class="mb-6">
-            <label class="block mb-2 font-medium text-gray-700">Poster Event</label>
-            <input type="file" name="poster_path"
+            <label class="block mb-2 font-medium text-gray-700">
+                Poster Event (Opsional)
+            </label>
+
+            <input type="file"
+                name="poster"
+                accept="image/*"
                 class="w-full border border-gray-300 p-2.5 rounded">
         </div>
 
         {{-- Submit --}}
         <div class="flex justify-end border-t pt-4">
             <button type="submit"
-                    class="bg-indigo-600 text-white px-8 py-2.5 rounded font-semibold hover:bg-indigo-700 shadow">
+                class="bg-indigo-600 text-white px-8 py-2.5 rounded font-semibold hover:bg-indigo-700 shadow">
                 Simpan Data
             </button>
         </div>
