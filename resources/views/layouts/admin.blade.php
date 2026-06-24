@@ -133,22 +133,41 @@
         </nav>
 
         <!-- FOOTER -->
-        <div class="pt-6 border-t border-indigo-800">
+        <div class="pt-6 border-t border-indigo-800 space-y-3">
 
+            <!-- BERANDA -->
             <a href="/"
-                class="flex items-center gap-3 px-4 py-3 text-indigo-300 hover:text-white transition font-medium">
+                class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigo-800 hover:bg-indigo-700 text-white font-semibold transition">
 
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        d="M3 12l2-2m0 0l7-7 7 7m-9 2v8m0-8h6m-6 8H7a2 2 0 01-2-2v-5m14 5a2 2 0 002-2v-5">
                     </path>
-
                 </svg>
 
-                Keluar
-
+                Beranda
             </a>
+
+            <!-- LOGOUT -->
+            <form action="{{ route('admin.logout') }}" method="POST">
+                @csrf
+
+                <button type="submit"
+                    class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold transition">
+
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 17l5-5-5-5"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12H3"></path>
+                    </svg>
+
+                    Logout
+                </button>
+            </form>
 
         </div>
 

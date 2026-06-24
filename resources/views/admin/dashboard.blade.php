@@ -5,16 +5,6 @@
 <!-- Main Content -->
 <main class="flex-1 p-10 overflow-y-auto">
 
-    <div class="flex justify-end mb-6">
-        <form action="{{ route('admin.logout') }}" method="POST">
-            @csrf
-            <button type="submit"
-                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-                Logout
-            </button>
-        </form>
-    </div>
-
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
